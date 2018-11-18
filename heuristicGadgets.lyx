@@ -1,0 +1,189 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass revtex4-1
+\begin_preamble
+\usepackage{amsfonts,amsmath} % amsmath added here instead to prevent clash with lyx function
+\newcommand{\intextheight}{13 pt}
+\let\fileinput\input % to allow conversion without turning tikz to lyx
+\usepackage[font=small,labelfont=bf,
+   justification=justified,
+   singlelinecheck=false,
+   format=plain]{caption}
+
+\usepackage{threeparttable}
+%\captionsetup[table]{
+%  labelsep=newline,
+%  justification=justified,
+%  singlelinecheck=false,
+%  textfont=it,
+%}
+\end_preamble
+\options showpacs,preprintnumbers,amssymb,aps,notitlepage
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "lmodern" "default"
+\font_sans "lmss" "default"
+\font_typewriter "lmtt" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Heuristic Quadratization
+\end_layout
+
+\begin_layout Author
+Nike Dattani
+\end_layout
+
+\begin_layout Author Email
+
+n.dattani@cfa.harvard.edu
+\end_layout
+
+\begin_layout Affiliation
+Harvard-Smithsonian Center for Astrophysics
+\end_layout
+
+\begin_layout Author
+Nicholas Chancellor
+\end_layout
+
+\begin_layout Author Email
+
+nicholas.chancellor@durham.ac.uk
+\end_layout
+
+\begin_layout Affiliation
+Durham University
+\end_layout
+
+\begin_layout Section
+Heuristic version of Rosenberg's gadget
+\end_layout
+
+\begin_layout Standard
+Consider the famous gadget of Rosenberg which has been known since 1975:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+b_{1}b_{2}b_{3}\rightarrow b_{1}b_{a}+b_{2}b_{3}-2b_{2}b_{a}-2b_{3}b_{a}+3b_{a}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This works because the penalty term is 0 if and only if 
+\begin_inset Formula $b_{a}=b_{2}b_{3}$
+\end_inset
+
+ which makes the RHS equal the LHS.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now consider the gadget:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+b_{1}b_{2}b_{3}\rightarrow b_{1}b_{a}+b_{2}b_{3}-b_{2}b_{a}-b_{3}b_{a}+b_{a}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The coefficients are much smaller, sometimes double or even triple as small.
+ This makes it much easier to compile onto D-Wave's strict coupling strength
+ limitations.
+ The gadget does not work in 100% of the cases, but the number of cases
+ that fail is small, and often those cases are not found by the annealer
+ anyway because other terms in the overall Hamiltonian cause those terms
+ not to be favored.
+\end_layout
+
+\begin_layout Section
+Heuristic versions of Qutrit to Qubit gadgets
+\end_layout
+
+\end_body
+\end_document
