@@ -391,7 +391,7 @@ The last equation tells us that
 \begin_inset Formula $\alpha=1,$
 \end_inset
 
-so our heuristic quadratization is:
+ so our heuristic quadratization is:
 \end_layout
 
 \begin_layout Standard
@@ -461,14 +461,19 @@ rule out
 \end_layout
 
 \begin_layout Section
-Heuristic gadget to improve other things (what?)
+Heuristic gadget to improve other things (which things?)
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
+The best non-heuristic PTR gadget for cubics uses 1 auxiliary and has 4
+ quadratic terms (3 of them being sub-modular), 6 total terms, 1 triangle
+ in the gadget graph, and coefficients that range from -1 to 1.
+ Is it possible to do this with the same number of auxiliaries but fewer
+ quadratic terms, or fewer non-sub-modular terms, or fewer triangles, or
+ with a smaller range for the coefficients? Let's try:
+\end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset Formula 
 \begin{align}
 b_{1}b_{2}b_{3} & =\alpha_{12}b_{1}b_{2}+\alpha_{13}b_{1}b_{3}+\alpha_{1a}b_{1}b_{a}+\alpha_{23}b_{2}b_{3}+\alpha_{2a}b_{2}b_{a}+\alpha_{3a}b_{3}b_{a}+\alpha_{1}b_{1}+\alpha_{2}b_{2}+\alpha_{3}b_{3}+\alpha_{a}b_{a}+\alpha\\
@@ -480,24 +485,24 @@ b_{1}b_{2}b_{3}1_{a} & =\begin{pmatrix}b_{1}b_{2} & b_{1}b_{3} & b_{1}b_{a} & b_
 We then have 16 equations and 11 unknowns:
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset Formula 
 \begin{align}
-\begin{pmatrix}0\times0\times0\times0\\
+\begin{pmatrix}0\times0\times0\times1\\
 0\times0\times0\times1\\
-0\times0\times1\times0\\
 0\times0\times1\times1\\
-0\times1\times0\times0\\
+0\times0\times1\times1\\
 0\times1\times0\times1\\
-0\times1\times1\times0\\
+0\times1\times0\times1\\
 0\times1\times1\times1\\
-1\times0\times0\times0\\
+0\times1\times1\times1\\
 1\times0\times0\times1\\
-1\times0\times1\times0\\
+1\times0\times0\times1\\
 1\times0\times1\times1\\
-1\times1\times0\times0\\
+1\times0\times1\times1\\
 1\times1\times0\times1\\
-1\times1\times1\times0\\
+1\times1\times0\times1\\
+1\times1\times1\times1\\
 1\times1\times1\times1
 \end{pmatrix} & =\begin{pmatrix}0\times0 & 0\times0 & 0\times0 & 0\times0 & 0\times0 & 0\times0 & 0 & 0 & 0 & 0 & 1\\
 0\times0 & 0\times0 & 0\times1 & 0\times0 & 0\times1 & 0\times1 & 0 & 0 & 0 & 1 & 1\\
@@ -541,7 +546,7 @@ We then have 16 equations and 11 unknowns:
 0\\
 0\\
 0\\
-0\\
+1\\
 1
 \end{pmatrix} & =\begin{pmatrix}0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\
@@ -570,8 +575,20 @@ We then have 16 equations and 11 unknowns:
 \alpha_{3}\\
 \alpha_{a}\\
 \alpha
-\end{pmatrix}\\
-\begin{pmatrix}0\\
+\end{pmatrix}.
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{pmatrix}0\\
 0\\
 0\\
 0\\
@@ -585,9 +602,9 @@ We then have 16 equations and 11 unknowns:
 0\\
 0\\
 0\\
-0\\
+1\\
 1
-\end{pmatrix} & =\begin{pmatrix}0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha\\
+\end{pmatrix}=\begin{pmatrix}0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha\\
 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{a} & \alpha\\
 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{3} & 0 & \alpha\\
 0 & 0 & 0 & 0 & 0 & \alpha_{3a} & 0 & 0 & \alpha_{3} & \alpha_{a} & \alpha\\
@@ -603,8 +620,294 @@ We then have 16 equations and 11 unknowns:
 \alpha_{12} & 0 & \alpha_{1a} & 0 & \alpha_{2a} & 0 & \alpha_{1} & \alpha_{2} & 0 & \alpha_{a} & \alpha\\
 \alpha_{12} & \alpha_{13} & 0 & \alpha_{23} & 0 & 0 & \alpha_{1} & \alpha_{2} & \alpha_{3} & 0 & \alpha\\
 \alpha_{12} & \alpha_{13} & \alpha_{1a} & \alpha_{23} & \alpha_{2a} & \alpha_{3a} & \alpha_{1} & \alpha_{2} & \alpha_{3} & \alpha_{a} & \alpha
-\end{pmatrix}
+\end{pmatrix}.$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We then have the following equations:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+0 & =\alpha\\
+0 & =\alpha_{a}+\alpha\\
+0 & =\alpha_{3}+\alpha\\
+0 & =\alpha_{3a}+\alpha_{3}+\alpha_{a}+\alpha\\
+0 & =\alpha_{2}+\alpha\\
+0 & =\alpha_{2a}+\alpha_{2}+\alpha_{a}+\alpha\\
+0 & =\alpha_{23}+\alpha_{2}+\alpha_{3}+\alpha\\
+0 & =\alpha_{23}+\alpha_{2a}+\alpha_{3a}+\alpha_{2}+\alpha_{3}+\alpha_{a}+\alpha\\
+0 & =\alpha_{1}+\alpha\\
+0 & =\alpha_{1a}+\alpha_{1}+\alpha_{a}+\alpha\\
+0 & =\alpha_{13}+\alpha_{1}+\alpha_{3}+\alpha\\
+0 & =\alpha_{13}+\alpha_{1a}+\alpha_{3a}+\alpha_{1}+\alpha_{3}+\alpha_{a}+\alpha\\
+0 & =\alpha_{12}+\alpha_{1}+\alpha_{2}+\alpha\\
+0 & =\alpha_{12}+\alpha_{1a}+\alpha_{2a}+\alpha_{1}+\alpha_{2}+\alpha_{a}+\alpha\\
+1 & =\alpha_{12}+\alpha_{13}+\alpha_{23}+\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha\\
+1 & =\alpha_{12}+\alpha_{13}+\alpha_{1a}+\alpha_{23}+\alpha_{2a}+\alpha_{3a}+\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha_{a}+\alpha.
 \end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+But we only care about the subspace in which we have minimized over 
+\begin_inset Formula $b_{a}$
+\end_inset
+
+, this means it is really 8 (not necessarily linear) equations and 11 unknowns:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+0 & =\min(\alpha,\alpha_{a}+\alpha)\\
+0 & =\min(\alpha_{3}+\alpha,\alpha_{3a}+\alpha_{3}+\alpha_{a}+\alpha)\\
+0 & ={\rm min(}\alpha_{2}+\alpha,\alpha_{2a}+\alpha_{2}+\alpha_{a}+\alpha)\\
+0 & =\min(\alpha_{23}+\alpha_{2}+\alpha_{3}+\alpha,\alpha_{23}+\alpha_{2a}+\alpha_{3a}+\alpha_{2}+\alpha_{3}+\alpha_{a}+\alpha)\\
+0 & =\min(\alpha_{1}+\alpha,\alpha_{1a}+\alpha_{1}+\alpha_{a}+\alpha)\\
+0 & =\min(\alpha_{13}+\alpha_{1}+\alpha_{3}+\alpha,\alpha_{13}+\alpha_{1a}+\alpha_{3a}+\alpha_{1}+\alpha_{3}+\alpha_{a}+\alpha)\\
+0 & =\min(\alpha_{12}+\alpha_{1}+\alpha_{2}+\alpha,\alpha_{12}+\alpha_{1a}+\alpha_{2a}+\alpha_{1}+\alpha_{2}+\alpha_{a}+\alpha)\\
+1 & =\min(\alpha_{12}+\alpha_{13}+\alpha_{23}+\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha,\alpha_{12}+\alpha_{13}+\alpha_{1a}+\alpha_{23}+\alpha_{2a}+\alpha_{3a}+\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha_{a}+\alpha)
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Removing the triangle
+\end_layout
+
+\begin_layout Standard
+Simply removing one of the edges of the triangle would not do extreme damage,
+ but we can do better by choosing the other coefficients optimally to make
+ the gadget reproduce the desired behavior in as many cases as possible.
+ The most general ansatz for a degree-4 gadget without a triangle is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+b_{1}b_{2}b_{3} & =\alpha_{12}b_{1}b_{2}+\alpha_{13}b_{1}b_{3}+\alpha_{2a}b_{2}b_{a}+\alpha_{3a}b_{3}b_{a}+\alpha_{1}b_{1}+\alpha_{2}b_{2}+\alpha_{3}b_{3}+\alpha_{a}b_{a}+\alpha
+\end{align}
+
+\end_inset
+
+We now have only 9 unknowns and still 8 (not necessarily linear) equations:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+0 & =\min(\alpha,\alpha_{a}+\alpha)\\
+0 & =\min(\alpha_{3}+\alpha,\alpha_{3a}+\alpha_{3}+\alpha_{a}+\alpha)\\
+0 & ={\rm min(}\alpha_{2}+\alpha,\alpha_{2a}+\alpha_{2}+\alpha_{a}+\alpha)\\
+0 & =\min(\alpha_{23}+\alpha_{2}+\alpha_{3}+\alpha,\alpha_{2a}+\alpha_{3a}+\alpha_{2}+\alpha_{3}+\alpha_{a}+\alpha)\\
+0 & =\min(\alpha_{1}+\alpha,\alpha_{1}+\alpha_{a}+\alpha)\\
+0 & =\min(\alpha_{13}+\alpha_{1}+\alpha_{3}+\alpha,\alpha_{13}+\alpha_{3a}+\alpha_{1}+\alpha_{3}+\alpha_{a}+\alpha)\\
+0 & =\min(\alpha_{12}+\alpha_{1}+\alpha_{2}+\alpha,\alpha_{12}+\alpha_{2a}+\alpha_{1}+\alpha_{2}+\alpha_{a}+\alpha)\\
+1 & =\min(\alpha_{12}+\alpha_{13}+\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha,\alpha_{12}+\alpha_{13}+\alpha_{2a}+\alpha_{3a}+\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha_{a}+\alpha)
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These equations tell us the following, which might help, but don't give
+ a complete description of the problem, because for example the first inequality
+ does not need to be satisfied, if for example 
+\begin_inset Formula $\alpha=-\alpha_{a}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\alpha & \ge0\\
+\alpha_{a}+\alpha & \ge0\\
+\alpha_{3}+\alpha & \ge0\\
+\alpha_{3a}+\alpha_{3}+\alpha_{a}+\alpha & \ge0\\
+\alpha_{2}+\alpha & \ge0\\
+\alpha_{2a}+\alpha_{2}+\alpha_{a}+\alpha & \ge0\\
+\alpha_{23}++\alpha_{2}+\alpha_{3}+\alpha & \ge0\\
+\alpha_{2a}+\alpha_{3a}+\alpha_{2}+\alpha_{3}+\alpha_{a}+\alpha & \ge0\\
+\alpha_{1}+\alpha & \ge0\\
+\alpha_{1}+\alpha_{a}+\alpha & \ge0\\
+\alpha_{13}+\alpha_{1}+\alpha_{3}+\alpha & \ge0\\
+\alpha_{13}+\alpha_{3a}+\alpha_{1}+\alpha_{3}+\alpha_{a}+\alpha & \ge0\\
+\alpha_{12}+\alpha_{1}+\alpha_{2}+\alpha & \ge0\\
+\alpha_{12}+\alpha_{2a}+\alpha_{1}+\alpha_{2}+\alpha_{a}+\alpha & \ge0\\
+\alpha_{12}+\alpha_{13}+\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha & \ge1\\
+\alpha_{12}+\alpha_{13}+\alpha_{2a}+\alpha_{3a}+\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha_{a}+\alpha & \ge1
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Alternatively we can just guess whether 
+\begin_inset Formula $b_{a}=0$
+\end_inset
+
+ or 
+\begin_inset Formula $b_{a}=1$
+\end_inset
+
+ minimizes the quadratic function.
+ If it is 
+\begin_inset Formula $b_{a}=0$
+\end_inset
+
+, we get:
+\begin_inset Formula 
+\begin{equation}
+\begin{pmatrix}0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+1
+\end{pmatrix}=\begin{pmatrix}0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
+0 & 0 & 1 & 0 & 0 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 1\\
+0 & 1 & 0 & 0 & 1 & 0 & 1 & 1\\
+1 & 0 & 0 & 0 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 0 & 1 & 1 & 1 & 1
+\end{pmatrix}\begin{pmatrix}\alpha_{12}\\
+\alpha_{13}\\
+\alpha_{2a}\\
+\alpha_{3a}\\
+\alpha_{1}\\
+\alpha_{2}\\
+\alpha_{3}\\
+\alpha
+\end{pmatrix}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This has a column of zeros.
+ Let's try 
+\begin_inset Formula $b_{a}=1$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align}
+\begin{pmatrix}0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+1
+\end{pmatrix} & =\begin{pmatrix}0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 1 & 0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
+0 & 0 & 1 & 1 & 0 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 1\\
+0 & 1 & 0 & 1 & 1 & 0 & 1 & 1\\
+1 & 0 & 0 & 0 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1
+\end{pmatrix}\begin{pmatrix}\alpha_{12}\\
+\alpha_{13}\\
+\alpha_{2a}\\
+\alpha_{3a}\\
+\alpha_{1}\\
+\alpha_{2}\\
+\alpha_{3}\\
+\alpha
+\end{pmatrix}+\begin{pmatrix}1\\
+1\\
+1\\
+1\\
+1\\
+1\\
+1\\
+1
+\end{pmatrix}.
+\end{align}
+
+\end_inset
+
+Already we can see 2 columns that are the same, so there is no cubic gadget
+ with no triangles.
+ So now we have to try to just solve as many equations lines as we can,
+ or just make sure there's a gap between the ground and first excited state,
+ no matter how big.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+\begin{pmatrix}0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+1
+\end{pmatrix}=\begin{pmatrix}0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
+0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1\\
+0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1\\
+0 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1\\
+0 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 1\\
+0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1\\
+1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1\\
+1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1\\
+1 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1
+\end{pmatrix}\begin{pmatrix}\alpha_{12}\\
+\alpha_{13}\\
+\alpha_{2a}\\
+\alpha_{3a}\\
+\alpha_{1}\\
+\alpha_{2}\\
+\alpha_{3}\\
+\alpha_{a}\\
+\alpha
+\end{pmatrix}.
+\end{equation}
 
 \end_inset
 
@@ -614,6 +917,457 @@ We then have 16 equations and 11 unknowns:
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If 
+\begin_inset Formula $\alpha_{a}<0$
+\end_inset
+
+ then 
+\begin_inset Formula $\min(\alpha,\alpha_{a}+\alpha)=\alpha-|\alpha_{a}|$
+\end_inset
+
+ which has to be 0, so 
+\begin_inset Formula $\alpha_{a}\ge0$
+\end_inset
+
+.
+ This means 
+\begin_inset Formula $\alpha_{1}=0$
+\end_inset
+
+, and we have 8 unknowns:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+\begin{pmatrix}0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+1
+\end{pmatrix}=\begin{pmatrix}0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
+0 & 0 & 0 & 1 & 0 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 1 & 0 & 0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
+0 & 0 & 1 & 1 & 0 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 1 & 0 & 1 & 1\\
+0 & 1 & 0 & 0 & 1 & 1 & 0 & 1\\
+0 & 1 & 0 & 1 & 1 & 1 & 1 & 1\\
+1 & 0 & 0 & 0 & 1 & 0 & 0 & 1\\
+1 & 0 & 1 & 0 & 1 & 0 & 1 & 1\\
+1 & 1 & 0 & 0 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1
+\end{pmatrix}\begin{pmatrix}\alpha_{12}\\
+\alpha_{13}\\
+\alpha_{2a}\\
+\alpha_{3a}\\
+\alpha_{2}\\
+\alpha_{3}\\
+\alpha_{a}\\
+\alpha
+\end{pmatrix}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Also 
+\begin_inset Formula $\alpha\ge0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+To make things easier let us set 
+\begin_inset Formula $\alpha=0$
+\end_inset
+
+ (now we have 8 equations and 8 unknowns):
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align}
+0 & =\min(0,\alpha_{a})\\
+0 & =\min(\alpha_{3},\alpha_{3a}+\alpha_{3}+\alpha_{a})\\
+0 & ={\rm min(}\alpha_{2},\alpha_{2a}+\alpha_{2}+\alpha_{a})\\
+0 & =\min(\alpha_{23}+\alpha_{2}+\alpha_{3},\alpha_{2a}+\alpha_{3a}+\alpha_{2}+\alpha_{3}+\alpha_{a})\\
+0 & =\min(\alpha_{1},\alpha_{1}+\alpha_{a})\\
+0 & =\min(\alpha_{13}+\alpha_{1}+\alpha_{3},\alpha_{13}+\alpha_{3a}+\alpha_{1}+\alpha_{3}+\alpha_{a})\\
+0 & =\min(\alpha_{12}+\alpha_{1}+\alpha_{2},\alpha_{12}+\alpha_{2a}+\alpha_{1}+\alpha_{2}+\alpha_{a})\\
+1 & =\min(\alpha_{12}+\alpha_{13}+\alpha_{1}+\alpha_{2}+\alpha_{3},\alpha_{12}+\alpha_{13}+\alpha_{2a}+\alpha_{3a}+\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha_{a})
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Assuming 
+\begin_inset Formula $\alpha_{a}\ge0$
+\end_inset
+
+, we have:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+\alpha_{1}=0
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+\begin{pmatrix}0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+1\\
+1
+\end{pmatrix}=\begin{pmatrix}0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 1\\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1\\
+0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1\\
+0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1\\
+0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 1\\
+0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 1\\
+1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1\\
+1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1\\
+1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1
+\end{pmatrix}\begin{pmatrix}\alpha_{12}\\
+\alpha_{13}\\
+0\\
+0\\
+\alpha_{2a}\\
+\alpha_{3a}\\
+0\\
+\alpha_{2}\\
+\alpha_{3}\\
+\alpha_{a}\\
+0
+\end{pmatrix}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If we start by assuming 
+\begin_inset Formula $\alpha_{a}$
+\end_inset
+
+ is negative, we have:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+\alpha=-\alpha_{a},
+\end{equation}
+
+\end_inset
+
+If we then assume that 
+\begin_inset Formula $\alpha_{3a}<\alpha$
+\end_inset
+
+, we have:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+\alpha_{3a}=-\alpha_{3},
+\end{equation}
+
+\end_inset
+
+Similarly we can assume that 
+\begin_inset Formula $\alpha_{2a}<\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha_{1a}<\alpha$
+\end_inset
+
+, leading to:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align}
+\alpha_{2a} & =-\alpha_{2},\\
+\alpha_{1a} & =-\alpha_{1}.
+\end{align}
+
+\end_inset
+
+If we assume that 
+\begin_inset Formula $\alpha_{2a}+\alpha_{3a}+\alpha<0$
+\end_inset
+
+, we get that:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+\alpha_{23}=0.
+\end{equation}
+
+\end_inset
+
+Similarly if we assume that 
+\begin_inset Formula $\alpha_{1a}+\alpha_{3a}+\alpha<0$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha_{1a}+\alpha_{2a}+\alpha<0$
+\end_inset
+
+, we get that:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+\alpha_{13}=\alpha_{12}=0.
+\end{equation}
+
+\end_inset
+
+This makes the last equation un-satisfiable, so we will instead assume that
+\series bold
+ 
+\begin_inset Formula $\alpha_{1a}+\alpha_{2a}+\alpha>0$
+\end_inset
+
+
+\series default
+, leading to:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+\alpha_{12}=\alpha_{1a}+\alpha_{2a}+\alpha.
+\end{equation}
+
+\end_inset
+
+If we assume 
+\begin_inset Formula $2\alpha+\alpha_{3}<\alpha_{1a}+\alpha_{2a}+\alpha$
+\end_inset
+
+, then we have:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+2\alpha+\alpha_{3}=1.
+\end{equation}
+
+\end_inset
+
+Since 
+\begin_inset Formula $\alpha_{3}>\alpha$
+\end_inset
+
+, we can have 
+\begin_inset Formula $\alpha=-1$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{3}=3$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Then we need to satisfy: 
+\begin_inset Formula $\alpha_{2a}-\alpha_{3}+\alpha<0$
+\end_inset
+
+, so 
+\begin_inset Formula $\alpha_{2a}<2$
+\end_inset
+
+.
+ The same would be true of 
+\begin_inset Formula $\alpha_{1a}$
+\end_inset
+
+ being 
+\begin_inset Formula $<2$
+\end_inset
+
+ but this can't happen because 
+\begin_inset Formula $\alpha_{1a}+\alpha_{2a}+\alpha>0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Plain Layout
+An alternative way to approach this is to solve the equations 1 at a time:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align}
+0 & =\min(\alpha,\alpha_{a}+\alpha)\rightarrow\alpha=-\alpha_{a},\alpha>0.\\
+0 & =\min(\alpha_{3}+\alpha,\alpha_{3a}+\alpha_{3}+\alpha_{a}+\alpha)\rightarrow\alpha=-\alpha_{3},\alpha_{3a}-\alpha\ge0\\
+0 & ={\rm min(}\alpha_{2}+\alpha,\alpha_{2a}+\alpha_{2}+\alpha_{a}+\alpha)\rightarrow\alpha=-\alpha_{2},\alpha_{2a}-\alpha\ge0\\
+0 & =\min(\alpha_{23}+\alpha_{2}+\alpha_{3}+\alpha,\alpha_{23}+\alpha_{2a}+\alpha_{3a}+\alpha_{2}+\alpha_{3}+\alpha_{a}+\alpha)\rightarrow\alpha_{23}=-\alpha_{2},\alpha_{2a}+\alpha_{3a}>\alpha\\
+0 & =\min(\alpha_{1}+\alpha,\alpha_{1a}+\alpha_{1}+\alpha_{a}+\alpha)\rightarrow\alpha=-\alpha_{1},\alpha_{1a}-\alpha\ge0\\
+0 & =\min(\alpha_{13}+\alpha_{1}+\alpha_{3}+\alpha,\alpha_{13}+\alpha_{1a}+\alpha_{3a}+\alpha_{1}+\alpha_{3}+\alpha_{a}+\alpha)\rightarrow\alpha_{13}=\alpha,\alpha_{1a}+\alpha_{3a}>\alpha\\
+0 & =\min(\alpha_{12}+\alpha_{1}+\alpha_{2}+\alpha,\alpha_{12}+\alpha_{1a}+\alpha_{2a}+\alpha_{1}+\alpha_{2}+\alpha_{a}+\alpha)\rightarrow\alpha_{12}=\alpha,\alpha_{1a}+\alpha_{2a}>\alpha\\
+1 & =\min(\alpha_{12}+\alpha_{13}+\alpha_{23}+\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha,\alpha_{12}+\alpha_{13}+\alpha_{1a}+\alpha_{23}+\alpha_{2a}+\alpha_{3a}+\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha_{a}+\alpha)\rightarrow\alpha=1,\alpha_{1a}+\alpha_{2a}+\alpha_{3a}>1
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+This can be satisfied as follows:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align}
+\alpha & =1\\
+\alpha_{1} & =-1\\
+\alpha_{2} & =-1\\
+\alpha_{3} & =-1\\
+a_{a} & =-1\\
+\alpha_{12} & =1\\
+\alpha_{23} & =1\\
+\alpha_{13} & =1\\
+\alpha_{1a} & =2/3\\
+\alpha_{2a} & =2/3\\
+\alpha_{3a} & =2/3
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+So the quadratization is:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+b_{1}b_{2}b_{3}\rightarrow b_{1}b_{2}+b_{1}b_{3}+\frac{2}{3}b_{1}b_{a}+b_{2}b_{3}+\frac{2}{3}b_{2}b_{a}+\frac{2}{3}b_{3}b_{a}-b_{1}-b_{2}-b_{3}-b_{a}+1
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+The result is:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+\begin{pmatrix}1\\
+0\\
+0\\
+-1/3\\
+\\
+\\
+\\
+\\
+\end{pmatrix}...
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+It seems to have not worked again...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Heuristic gadget to quadratize multiple cubic terms with 1 auxiliary
 \end_layout
 
 \begin_layout Section
