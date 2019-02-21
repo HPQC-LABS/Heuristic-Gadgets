@@ -104,7 +104,6 @@ Nike Dattani
 \end_layout
 
 \begin_layout Author Email
-
 n.dattani@cfa.harvard.edu
 \end_layout
 
@@ -465,9 +464,20 @@ Heuristic gadget to improve other things
 \end_layout
 
 \begin_layout Standard
-The best non-heuristic PTR gadget for cubics uses 1 auxiliary and has 4
- quadratic terms (3 of them being sub-modular), 6 total terms, 1 triangle
- in the gadget graph, and coefficients that range from -1 to 1.
+The best non-heuristic PTR gadget for cubics 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+in terms of number of sub-modular terms is uses 1 auxiliary and has 5 quadratic
+ terms (4 of them being sub-modular), 7 total terms, 2 triangles
+\end_layout
+
+\end_inset
+
+ uses 1 auxiliary and has 5 quadratic terms (3 of them being sub-modular),
+ 6 total terms, 1 triangle in the gadget graph, and coefficients that range
+ from -1 to 1.
  Is it possible to do this with the same number of auxiliaries but fewer
  quadratic terms, or fewer non-sub-modular terms, or fewer triangles, or
  with a smaller range for the coefficients? Let's try:
@@ -1067,7 +1077,10 @@ Attempt 2
 \begin_inset Quotes erd
 \end_inset
 
-:
+.
+ First we will try without the restriction that there's no triangles (note
+ that the second last element in the vector on the left should be 1 but
+ I made a typo while doing this and it still worked out well it seems):
 \begin_inset Formula 
 \begin{equation}
 \begin{pmatrix}0\\
@@ -1084,7 +1097,7 @@ Attempt 2
 0\\
 0\\
 0\\
-1\\
+0\\
 1
 \end{pmatrix}=\begin{pmatrix}0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\
@@ -1159,7 +1172,7 @@ The least-squares solution is:
 \end_layout
 
 \begin_layout Standard
-Multiplying this solution by 16 and adding 1 we get:
+Multiplying this solution by 4 and adjusting the constant term we get:
 \end_layout
 
 \begin_layout Standard
@@ -1181,66 +1194,50 @@ Multiplying this solution by 16 and adding 1 we get:
 1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1\\
 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 1\\
 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1
-\end{pmatrix}\begin{pmatrix}4\\
-4\\
-4\\
-4\\
-4\\
-4\\
--4\\
--4\\
--4\\
--4\\
-3
-\end{pmatrix}+\begin{pmatrix}1\\
+\end{pmatrix}\begin{pmatrix}1\\
 1\\
 1\\
 1\\
 1\\
 1\\
-1\\
-1\\
-1\\
-1\\
-1\\
-1\\
-1\\
-1\\
-1\\
+-1\\
+-1\\
+-1\\
+-1\\
 1
-\end{pmatrix} & =\begin{pmatrix}4\\
+\end{pmatrix} & =\begin{pmatrix}1\\
 0\\
 0\\
 0\\
 0\\
 0\\
 0\\
-4\\
+1\\
 0\\
 0\\
 0\\
-4\\
+1\\
 0\\
-4\\
-4\\
-12
+1\\
+1\\
+3
 \end{pmatrix}\\
-\min_{b_{a}}\begin{pmatrix}4\\
+\min_{b_{a}}\begin{pmatrix}1\\
 0\\
 0\\
 0\\
 0\\
 0\\
 0\\
-4\\
+1\\
 0\\
 0\\
 0\\
-4\\
+1\\
 0\\
-4\\
-4\\
-12
+1\\
+1\\
+3
 \end{pmatrix} & =\begin{pmatrix}0\\
 0\\
 0\\
@@ -1248,13 +1245,165 @@ Multiplying this solution by 16 and adding 1 we get:
 0\\
 0\\
 0\\
-4
+1
 \end{pmatrix}.
 \end{align}
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Now let's remove 
+\begin_inset Formula $b_{1a}$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{23}$
+\end_inset
+
+ so that there's no triangles:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{pmatrix}0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+1\\
+1
+\end{pmatrix}=\begin{pmatrix}0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
+0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1\\
+0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1\\
+0 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1\\
+0 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 1\\
+0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1\\
+1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1\\
+1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1\\
+1 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1
+\end{pmatrix}\begin{pmatrix}\alpha_{12}\\
+\alpha_{13}\\
+\alpha_{2a}\\
+\alpha_{3a}\\
+\alpha_{1}\\
+\alpha_{2}\\
+\alpha_{3}\\
+\alpha_{a}\\
+\alpha
+\end{pmatrix}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The least-squares solution is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{pmatrix}\alpha_{12}\\
+\alpha_{13}\\
+\alpha_{2a}\\
+\alpha_{3a}\\
+\alpha_{1}\\
+\alpha_{2}\\
+\alpha_{3}\\
+\alpha_{a}\\
+\alpha
+\end{pmatrix}=\begin{pmatrix}\nicefrac{1}{2}\\
+\nicefrac{1}{2}\\
+0\\
+0\\
+-\nicefrac{1}{4}\\
+0\\
+0\\
+0\\
+0
+\end{pmatrix}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This means we have the very simple heuristic quadratization (when multiplying
+ by 4 and adding 1):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+b_{1}b_{2}b_{3}\rightarrow2b_{1}b_{2}+2b_{1}b_{3}-b_{1}+1.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It's output is as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+000 & \rightarrow1\\
+001 & \rightarrow1\\
+010 & \rightarrow1\\
+011 & \rightarrow1\\
+100 & \rightarrow0\\
+101 & \rightarrow2\\
+110 & \rightarrow2\\
+111 & \rightarrow4
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Still the maximum of 
+\begin_inset Formula $b_{1}b_{2}b_{3}$
+\end_inset
+
+ is the maximum attained by the quadratic function but we better hope the
+ global minimum has 
+\begin_inset Formula $100$
+\end_inset
+
+ because that's what the annealer will find if it works perfectly.
+ In reality it's likely that the annealer won't find the global minimum
+ anyway, so any one of the low-lying states seems to be at least twice as
+ likely to achieve than the maximum at 111 which we want to avoid.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1759,6 +1908,235 @@ It seems to have not worked again...
 
 \begin_layout Section
 Heuristic gadget to quadratize multiple cubic terms with 1 auxiliary
+\end_layout
+
+\begin_layout Standard
+One positive (or negative) cubic monomial needs 1 auxiliary to quadratize.
+ If we add 1 variable we can have cubic binomials such as:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\alpha_{123}b_{1}b_{2}b_{3}+\alpha_{341}b_{3}b_{4}b_{1},
+\end{equation}
+
+\end_inset
+
+which can be quadratized with 1 auxiliary (in this case we would share the
+ 
+\begin_inset Formula $b_{a_{13}}$
+\end_inset
+
+ auxiliary from an application of RBS.
+\end_layout
+
+\begin_layout Standard
+There's two classes of 4-variable, degree-3 functions that require at least
+ 2 auxuliary variables when applying RBS:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\alpha_{123}b_{1}b_{2}b_{3}+\alpha_{234}b_{2}b_{3}b_{4}+\alpha_{341}b_{3}b_{4}b_{1} & \text{\,\,\,and,}\label{eq:trinomialCubic}\\
+\alpha_{123}b_{1}b_{2}b_{3}+\alpha_{234}b_{2}b_{3}b_{4}+\alpha_{341}b_{3}b_{4}b_{1}+\alpha_{412}b_{4}b_{1}b_{2}.\label{eq:tetranomialCubic}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Maybe some functions in these classes can be quadratized with fewer than
+ 1 auxiliary with FGBZ or pairwise covers or Grubner bases, but let's try
+ to find 1-auxiliary quadratizations by brute force.
+ The most general 1-auxuliary ansatz is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\alpha_{12}b_{1}b_{2}+\alpha_{13}b_{1}b_{2}+\alpha_{14}b_{1}b_{4}+\alpha_{1a}b_{1}b_{a}+\alpha_{23}b_{2}b_{3}+\alpha_{24}b_{2}b_{4}+\alpha_{2a}b_{2}b_{a}+\alpha_{34}b_{3}b_{4}+\alpha_{3a}b_{3}b_{a}+\alpha_{4a}b_{4}b_{a}\\
++\alpha_{1}b_{1}+\alpha_{2}b_{2}+\alpha_{3}b_{3}+\alpha_{4}b_{4}+\alpha_{a}b_{a}+\alpha.
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the cubic trinomial of Eq.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:trinomialCubic"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ we have the following output:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{equation}
+\begin{pmatrix}\alpha_{123}\times0\times0\times0\times1+1\times0\times0\times1\\
+0\times0\times0\times1+1\times0\times0\times1\\
+0\times0\times1\times1+1\times0\times0\times1\\
+0\times0\times1\times1+1\times0\times0\times1\\
+0\times1\times0\times1+1\times0\times0\times1\\
+0\times1\times0\times1+1\times0\times0\times1\\
+0\times1\times1\times1+1\times0\times0\times1\\
+0\times1\times1\times1+1\times0\times0\times1\\
+1\times0\times0\times1+1\times0\times0\times1\\
+1\times0\times0\times1+1\times0\times0\times1\\
+1\times0\times1\times1+1\times0\times0\times1\\
+1\times0\times1\times1+1\times0\times0\times1\\
+1\times1\times0\times1+1\times0\times0\times1\\
+1\times1\times0\times1+1\times0\times0\times1\\
+1\times1\times1\times1+1\times0\times0\times1\\
+1\times1\times1\times1+1\times0\times0\times1
+\end{pmatrix}=
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+0000 & \rightarrow0\\
+0001 & \rightarrow0\\
+0010 & \rightarrow0\\
+0011 & \rightarrow0\\
+0100 & \rightarrow0\\
+0101 & \rightarrow0\\
+0110 & \rightarrow0\\
+0111 & \rightarrow\alpha_{234}\\
+1000 & \rightarrow0\\
+1001 & \rightarrow0\\
+1010 & \rightarrow0\\
+1011 & \rightarrow\alpha_{341}\\
+1100 & \rightarrow0\\
+1101 & \rightarrow0\\
+1110 & \rightarrow\alpha_{123}\\
+1111 & \rightarrow\alpha_{123}+\alpha_{234}+\alpha_{341}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We therefore want to solve the quation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{pmatrix}0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+\alpha_{234}\\
+\alpha_{234}\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0\\
+\alpha_{341}\\
+\alpha_{341}\\
+0\\
+0\\
+0\\
+0\\
+\alpha_{123}\\
+\alpha_{123}\\
+\alpha_{123}+\alpha_{234}+\alpha_{341}\\
+\alpha_{123}+\alpha_{234}+\alpha_{341}
+\end{pmatrix}=\begin{pmatrix}0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\
+0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
+0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1\\
+0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1\\
+0 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1\\
+0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1\\
+0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\
+1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
+1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 1\\
+1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 1\\
+1 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 1 & 1\\
+1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 1\\
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1
+\end{pmatrix}\begin{pmatrix}\alpha_{12}\\
+\alpha_{13}\\
+\alpha_{14}\\
+\alpha_{1a}\\
+\alpha_{23}\\
+\alpha_{24}\\
+\alpha_{2a}\\
+\alpha_{34}\\
+\alpha_{3a}\\
+\alpha_{4a}\\
+\alpha_{1}\\
+\alpha_{2}\\
+\alpha_{3}\\
+\alpha_{4}\\
+\alpha_{a}\\
+\alpha
+\end{pmatrix}
+\end{equation}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
